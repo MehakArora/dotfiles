@@ -108,6 +108,6 @@ venv_prompt() {
 }
 
 # Update PS1 to include virtual env
-export PS1="\[\033[94m\]\${USER:4:6}@\h\[\033[00m\] \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \[\033[31m\]\$(venv_prompt)\[\033[00m\]$ "
+export PS1="\[\033[94m\]\${USER:0:5}@\h\[\033[00m\] \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \[\033[31m\]\$(venv_prompt)\[\033[00m\]$ "
 
 
