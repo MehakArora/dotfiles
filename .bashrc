@@ -12,11 +12,12 @@ fi
 alias sqm='squeue -u maror24'
 alias cdi='cd /labs/kamaleswaranlab/MODS/Encounter_Pickles/em/PSV_FILES_NEW/Imputed/'
 alias cdp='cd /labs/kamaleswaranlab/MODS/Encounter_Pickles/em/PSV_FILES_NEW/Projected/'
-alias cdsepy='cd /labs/kamaleswaranlab/MODS/EliteDataHacks/sepy/new_sepy_mehak/'
+alias cdsepy='cd /labs/collab/K-lab-MODS/MODS-PHI/EliteDataHacks/sepy/new_sepy_mehak/'
 alias cdcxr='cd /labs/kamaleswaranlab/niffler-data/chest_xrays/'
+alias images='cd /labs/collab/Imaging/Imaging-PHI/'
 alias sizeofd='du -sh * | sort -h'
 alias tmuxa='tmux attach -t'
-alias rapids='conda activate /labs/kamaleswaranlab/anaconda3/rapids'
+alias rapids='conda activate rapids-24.12'
 alias multimodal='conda activate /labs/kamaleswaranlab/anaconda3/multimodal'
 alias condact='conda deactivate'
 alias monai='conda activate monai'
@@ -31,10 +32,19 @@ alias pe='cd /labs/collab/K-lab-MODS/MODS-PHI/Encounter_Pickles/em/PSV_FILES_NEW
 alias pg='cd /labs/collab/K-lab-MODS/MODS-PHI/Encounter_Pickles/gr/PSV_FILES_NEW/'
 alias g='git '
 alias gcm='git commit -m'
-
 sr () 
 { 
     srun --mem=$1 --pty bash
+}
+
+srt ()
+{
+    srun --time=$1 --pty bash
+}
+
+srtm ()
+{
+    srun --time=$1 --mem=$2 --pty bash
 }
 
 function srunpy() {
@@ -103,11 +113,11 @@ venv_prompt() {
     if [ -n "$VIRTUAL_ENV" ]; then
         echo -e "(venv)"
     elif [ -n "$CONDA_DEFAULT_ENV" ]; then
-        echo -e "(conda:$CONDA_DEFAULT_ENV)"
+        echo -e "($(basename $CONDA_DEFAULT_ENV))"
     fi
 }
 
 # Update PS1 to include virtual env
-export PS1="\[\033[94m\]\${USER:0:5}@\h\[\033[00m\] \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \[\033[31m\]\$(venv_prompt)\[\033[00m\]$ "
+export PS1="\[\033[94m\]\${USER:0:5}@\h\[\033[00m\] \[\033[32m\]\W\[\033[33m\]\$(parse_git_branch)\[\033[00m\] \[\033[31m\]\$(venv_prompt)\[\033[00m\]$ "
 
 
