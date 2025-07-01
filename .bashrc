@@ -32,6 +32,14 @@ alias pe='cd /labs/collab/K-lab-MODS/MODS-PHI/Encounter_Pickles/em/PSV_FILES_NEW
 alias pg='cd /labs/collab/K-lab-MODS/MODS-PHI/Encounter_Pickles/gr/PSV_FILES_NEW/'
 alias g='git '
 alias gcm='git commit -m'
+alias cdeg='cd /labs/collab/Sepsis/SepsisProjectionProject/Clustering/EMGR'
+alias torch='source /opt/scratchspace/mehak/torch/bin/activate'
+alias gansformerv='source /opt/scratchspace/mehak/gansformerv/bin/activate'
+alias cds='cd /opt/scratchspace/'
+alias venv='source $HOME/venv/bin/activate'
+alias cdscg='cd /opt/scratchspace/conditionalGansformer'
+
+
 sr () 
 { 
     srun --mem=$1 --pty bash
@@ -44,7 +52,7 @@ srt ()
 
 srtm ()
 {
-    srun --time=$1 --mem=$2 --pty bash
+    srun --time=$1 --mem=$2 --partition=batch,overflow --pty bash
 }
 
 function srunpy() {
@@ -85,6 +93,9 @@ function expl(){
 # User specific aliases and functions
 GRB_LICENSE_FILE=/home/maror24/gurobi/gurobi.lic
 export PATH="/labs/kamaleswaranlab/tesseract-custom/bin:$PATH"
+export PATH="/home/maror24/apache-maven-3.9.10/bin:$PATH"
+export JAVA_HOME="/usr/lib/jvm/java-21/"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/maror24/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -111,7 +122,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 # Custom virtual env prompt function
 venv_prompt() {
     if [ -n "$VIRTUAL_ENV" ]; then
-        echo -e "(venv)"
+        echo -e "($(basename $VIRTUAL_ENV))"
     elif [ -n "$CONDA_DEFAULT_ENV" ]; then
         echo -e "($(basename $CONDA_DEFAULT_ENV))"
     fi
